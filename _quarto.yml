@@ -1,0 +1,13 @@
+project:
+  title: "create_r_package"
+  type: website
+
+editor: visual
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    number-sections: true
+

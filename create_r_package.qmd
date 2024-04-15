@@ -1,0 +1,245 @@
+---
+title: "Build your first R package"
+---
+
+::: callout-tip
+## You will learn to
+
+-   Create a new R package
+
+-   Writing the first function
+
+-   Setup quality control
+:::
+
+## Create new R package
+
+### Steps
+
+-   Go to **`Files` \> `New Project…`**
+
+-   Select **`New Directory` \> `R Package`**
+
+-   Fill in **`Package name`**
+
+-   (optional) Tick **`Create a git repository`**
+
+-   Click **`Create Project`**
+
+::: callout-tip
+#### A typical R package structure {.callout-tip}
+
+![](img/package_structure.png){width="295"}
+:::
+
+***Demo***: create new package
+
+{{< video img/create_pkg.mp4 >}}
+
+### Post creation
+
+-   Install `usethis`
+
+-   Generate a license for your package:
+
+    -   Open-source: `use_mit_license(copyright_holder=NULL)`
+
+    -   Proprietary: `use_proprietary_license(copyright_holder)`
+
+    -   Other [license options](https://usethis.r-lib.org/reference/licenses.html#ref-usage)...
+
+-   Generate a read me file: `usethis::use_readme_rmd()`
+
+-   (optional) Update information inside the `DESCRIPTION` file.
+
+## Writing the first function
+
+### Write it
+
+-   Create a file to place your function into
+-   Define a function
+
+Example
+
+```{r}
+square <- function(x) {
+  return(x * x)
+}
+```
+
+### Document it
+
+-   Install `roxygen2`
+
+-   Generate and update the roxygen documentation on top of the function.
+
+-   Run `roxygen2::roxygenise()` to generate documents.
+
+```{r}
+#' Square a number 
+#' 
+#' Takes a number x and returns its square, x * x. 
+#' 
+#' @param x A numeric value to be squared. 
+#' @return The square of x. 
+#' @examples 
+#' square(2) 
+#' square(-5.7) 
+#' 
+#' @export 
+square <- function(x) { 
+  return(x * x) 
+}
+```
+
+***Demo***: how to generate roxygen skeleton
+
+{{< video img/create_pkg.mp4 >}}
+
+### Caveat (ﾉ◕ヮ◕)ﾉ\*:･ﾟ✧
+
+Reuse built-in function names instead of creating new ones
+
+Some reusable function names: `plot`, `print`, `toString`
+
+To reuse function name:
+
+-   Modify original function to add class to it
+
+-   Write a custom function for your class
+
+Example: overriding `plot` function for class `square`
+
+```{r}
+square <- function(x) {
+  out <- x * x 
+  class(out) <- "my_class" # tell R that ouptut is of class "my_class"
+  return(out)
+}
+
+# --- Override plot function
+plot.my_class <- function(x, ...) {
+  plot(c(1:length(x)), x, xlab = "x", ylab = "Square of x", ...)
+}
+
+# --- Test the new plot function 
+y <- square(c(1,2,3,4,5,6,7,8,9,10))
+plot(y)
+```
+
+## Set up quality control
+
+### Unit testing
+
+**Makes sure your functions work as expected.**
+
+-   Install `devtools`, `usethis`
+
+-   Import usethis: `library(usethis)`
+
+-   Create a test: `usethis::use_test("test_name")`
+
+Example: unit test for `square` function\
+
+```{r, warning=F}
+library(testthat)
+test_that("square(3) returns 9", {
+  # --- Define expected output
+  expected <- 9
+  class(expected) <- "my_class" 
+  # --- Test function
+  actual <-  square(3)
+  expect_equal(actual, expected)
+})
+```
+
+::: callout-tip
+Run `devtools::test()` to run all tests in package
+:::
+
+### Code coverage
+
+**Knowing how much is your package tested.**
+
+-   Install `covr`
+
+-   Import `devtools` and `covr`
+
+-   Push your package to GitHub
+
+-   Run `use_coverage(type = c("codecov"))`
+
+-   Run `use_github_action("test-coverage")`
+
+-   Login [http://codecov.io](http://codecov.io/) and get your repo's token
+
+-   Run `codecov(token = "YOUR_TOKEN_HERE")`
+
+::: callout-tip
+#### ![](img/codecov.png){width="234"} {.callout-tip}
+:::
+
+### Automatic R CMD check
+
+**Ensure your changes doesn't cause the package to failed to build.**
+
+-   Re-knit readme: `devtools::build_readme()`
+
+-   Run:
+
+    ```{r, eval=FALSE}
+    use_github_action_check_standard(
+      save_as = "R-CMD-check.yaml",
+      ref = NULL, ignore = TRUE, open = FALSE)
+
+    ```
+
+::: callout-tip
+#### ![](img/r-cmd-check.png){width="258"} {.callout-tip}
+:::
+
+## Package down
+
+**Share your package with the world 🌎.**
+
+-   Create an empty branch for hosting your page.
+
+```{bash, eval=F}
+# Run this in terminal
+# To open Terminal in R studio, click Tools > Terminal > New Terminal
+git checkout --orphan gh-pages     
+git rm -rf .     
+git commit --allow-empty -m 'Initial gh-pages commit'    
+git push origin gh-pages     
+git checkout master
+```
+
+-   Install `pkgdown`
+
+-   Run `usethis::use_pkgdown()`
+
+-   Run `usethis::use_pkgdown_github_pages()`
+
+## Additional materials
+
+### Cheatsheet
+
+::: center-text
+[{{< fa link >}} Download cheatsheet](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://raw.githubusercontent.com/rstudio/cheatsheets/main/package-development.pdf&ved=2ahUKEwjQwtichsSFAxXpia8BHeHNBVQQFnoECA4QAQ&usg=AOvVaw3UgPwTq5Q0kZ1KhurRj__k){.btn .btn-outline-secondary role="button"}
+:::
+
+![](img/cheatsheet.png){width="701"}
+
+### Resources
+
+A sample R package: <https://thinhong.github.io/denim/>﻿
+
+Popular R packages: <https://tidyverse.tidyverse.org/>
+
+Thorough guide to R package development: <https://r-pkgs.org>
+
+"Advanced R" book: <https://adv-r.hadley.nz/>﻿"
+
+"R for data science" book : <https://r4ds.had.co.nz/>
+
+﻿Explore syntax for function documentation: <https://roxygen2.r-lib.org/articles/roxygen2.html>﻿

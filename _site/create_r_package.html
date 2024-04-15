@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.475">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>create_r_package - Build your first R package</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#create-new-r-package" id="toc-create-new-r-package" class="nav-link active" data-scroll-target="#create-new-r-package"><span class="toc-section-number">1</span>  Create new R package</a>
+  <ul class="collapse">
+  <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps"><span class="toc-section-number">1.1</span>  Steps</a></li>
+  <li><a href="#post-creation" id="toc-post-creation" class="nav-link" data-scroll-target="#post-creation"><span class="toc-section-number">1.2</span>  Post creation</a></li>
+  </ul></li>
+  <li><a href="#writing-the-first-function" id="toc-writing-the-first-function" class="nav-link" data-scroll-target="#writing-the-first-function"><span class="toc-section-number">2</span>  Writing the first function</a>
+  <ul class="collapse">
+  <li><a href="#write-it" id="toc-write-it" class="nav-link" data-scroll-target="#write-it"><span class="toc-section-number">2.1</span>  Write it</a></li>
+  <li><a href="#document-it" id="toc-document-it" class="nav-link" data-scroll-target="#document-it"><span class="toc-section-number">2.2</span>  Document it</a></li>
+  <li><a href="#caveat-ﾉヮﾉﾟ" id="toc-caveat-ﾉヮﾉﾟ" class="nav-link" data-scroll-target="#caveat-ﾉヮﾉﾟ"><span class="toc-section-number">2.3</span>  Caveat (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</a></li>
+  </ul></li>
+  <li><a href="#set-up-quality-control" id="toc-set-up-quality-control" class="nav-link" data-scroll-target="#set-up-quality-control"><span class="toc-section-number">3</span>  Set up quality control</a>
+  <ul class="collapse">
+  <li><a href="#unit-testing" id="toc-unit-testing" class="nav-link" data-scroll-target="#unit-testing"><span class="toc-section-number">3.1</span>  Unit testing</a></li>
+  <li><a href="#code-coverage" id="toc-code-coverage" class="nav-link" data-scroll-target="#code-coverage"><span class="toc-section-number">3.2</span>  Code coverage</a></li>
+  <li><a href="#automatic-r-cmd-check" id="toc-automatic-r-cmd-check" class="nav-link" data-scroll-target="#automatic-r-cmd-check"><span class="toc-section-number">3.3</span>  Automatic R CMD check</a></li>
+  </ul></li>
+  <li><a href="#package-down" id="toc-package-down" class="nav-link" data-scroll-target="#package-down"><span class="toc-section-number">4</span>  Package down</a></li>
+  <li><a href="#additional-materials" id="toc-additional-materials" class="nav-link" data-scroll-target="#additional-materials"><span class="toc-section-number">5</span>  Additional materials</a>
+  <ul class="collapse">
+  <li><a href="#cheatsheet" id="toc-cheatsheet" class="nav-link" data-scroll-target="#cheatsheet"><span class="toc-section-number">5.1</span>  Cheatsheet</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources"><span class="toc-section-number">5.2</span>  Resources</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Build your first R package</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+You will learn to
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Create a new R package</p></li>
+<li><p>Writing the first function</p></li>
+<li><p>Setup quality control</p></li>
+</ul>
+</div>
+</div>
+<section id="create-new-r-package" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="create-new-r-package"><span class="header-section-number">1</span> Create new R package</h2>
+<section id="steps" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="steps"><span class="header-section-number">1.1</span> Steps</h3>
+<ul>
+<li><p>Go to <strong><code>Files</code> &gt; <code>New Project…</code></strong></p></li>
+<li><p>Select <strong><code>New Directory</code> &gt; <code>R Package</code></strong></p></li>
+<li><p>Fill in <strong><code>Package name</code></strong></p></li>
+<li><p>(optional) Tick <strong><code>Create a git repository</code></strong></p></li>
+<li><p>Click <strong><code>Create Project</code></strong></p></li>
+</ul>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+A typical R package structure
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><img src="img/package_structure.png" class="img-fluid" width="295"></p>
+</div>
+</div>
+<p><strong><em>Demo</em></strong>: create new package</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="img/create_pkg.mp4"></video></div>
+</section>
+<section id="post-creation" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="post-creation"><span class="header-section-number">1.2</span> Post creation</h3>
+<ul>
+<li><p>Install <code>usethis</code></p></li>
+<li><p>Generate a license for your package:</p>
+<ul>
+<li><p>Open-source: <code>use_mit_license(copyright_holder=NULL)</code></p></li>
+<li><p>Proprietary: <code>use_proprietary_license(copyright_holder)</code></p></li>
+<li><p>Other <a href="https://usethis.r-lib.org/reference/licenses.html#ref-usage">license options</a>…</p></li>
+</ul></li>
+<li><p>Generate a read me file: <code>usethis::use_readme_rmd()</code></p></li>
+<li><p>(optional) Update information inside the <code>DESCRIPTION</code> file.</p></li>
+</ul>
+</section>
+</section>
+<section id="writing-the-first-function" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="writing-the-first-function"><span class="header-section-number">2</span> Writing the first function</h2>
+<section id="write-it" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="write-it"><span class="header-section-number">2.1</span> Write it</h3>
+<ul>
+<li>Create a file to place your function into</li>
+<li>Define a function</li>
+</ul>
+<p>Example</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>square <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x <span class="sc">*</span> x)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="document-it" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="document-it"><span class="header-section-number">2.2</span> Document it</h3>
+<ul>
+<li><p>Install <code>roxygen2</code></p></li>
+<li><p>Generate and update the roxygen documentation on top of the function.</p></li>
+<li><p>Run <code>roxygen2::roxygenise()</code> to generate documents.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Square a number </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' Takes a number x and returns its square, x * x. </span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param x A numeric value to be squared. </span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' @return The square of x. </span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples </span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' square(2) </span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' square(-5.7) </span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export </span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>square <span class="ot">&lt;-</span> <span class="cf">function</span>(x) { </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x <span class="sc">*</span> x) </span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong><em>Demo</em></strong>: how to generate roxygen skeleton</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video2" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="img/create_pkg.mp4"></video></div>
+</section>
+<section id="caveat-ﾉヮﾉﾟ" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="caveat-ﾉヮﾉﾟ"><span class="header-section-number">2.3</span> Caveat (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</h3>
+<p>Reuse built-in function names instead of creating new ones</p>
+<p>Some reusable function names: <code>plot</code>, <code>print</code>, <code>toString</code></p>
+<p>To reuse function name:</p>
+<ul>
+<li><p>Modify original function to add class to it</p></li>
+<li><p>Write a custom function for your class</p></li>
+</ul>
+<p>Example: overriding <code>plot</code> function for class <code>square</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>square <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> x <span class="sc">*</span> x </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">class</span>(out) <span class="ot">&lt;-</span> <span class="st">"my_class"</span> <span class="co"># tell R that ouptut is of class "my_class"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Override plot function</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plot.my_class <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...) {</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x)), x, <span class="at">xlab =</span> <span class="st">"x"</span>, <span class="at">ylab =</span> <span class="st">"Square of x"</span>, ...)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Test the new plot function </span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">square</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>))</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="create_r_package_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="set-up-quality-control" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="set-up-quality-control"><span class="header-section-number">3</span> Set up quality control</h2>
+<section id="unit-testing" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="unit-testing"><span class="header-section-number">3.1</span> Unit testing</h3>
+<p><strong>Makes sure your functions work as expected.</strong></p>
+<ul>
+<li><p>Install <code>devtools</code>, <code>usethis</code></p></li>
+<li><p>Import usethis: <code>library(usethis)</code></p></li>
+<li><p>Create a test: <code>usethis::use_test("test_name")</code></p></li>
+</ul>
+<p>Example: unit test for <code>square</code> function<br>
+</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(testthat)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"square(3) returns 9"</span>, {</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Define expected output</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  expected <span class="ot">&lt;-</span> <span class="dv">9</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">class</span>(expected) <span class="ot">&lt;-</span> <span class="st">"my_class"</span> </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Test function</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  actual <span class="ot">&lt;-</span>  <span class="fu">square</span>(<span class="dv">3</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(actual, expected)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Test passed 🎉</code></pre>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Run <code>devtools::test()</code> to run all tests in package</p>
+</div>
+</div>
+</section>
+<section id="code-coverage" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="code-coverage"><span class="header-section-number">3.2</span> Code coverage</h3>
+<p><strong>Knowing how much is your package tested.</strong></p>
+<ul>
+<li><p>Install <code>covr</code></p></li>
+<li><p>Import&nbsp;<code>devtools</code> and <code>covr</code></p></li>
+<li><p>Push your package to GitHub</p></li>
+<li><p>Run&nbsp;<code>use_coverage(type = c("codecov"))</code></p></li>
+<li><p>Run&nbsp;<code>use_github_action("test-coverage")</code></p></li>
+<li><p>Login&nbsp;<a href="http://codecov.io/">http://codecov.io</a> and get your repo’s token</p></li>
+<li><p>Run&nbsp;<code>codecov(token = "YOUR_TOKEN_HERE")</code></p></li>
+</ul>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+<img src="img/codecov.png" class="img-fluid" width="234">
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</section>
+<section id="automatic-r-cmd-check" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="automatic-r-cmd-check"><span class="header-section-number">3.3</span> Automatic R CMD check</h3>
+<p><strong>Ensure your changes doesn’t cause the package to failed to build.</strong></p>
+<ul>
+<li><p>Re-knit readme:&nbsp;<code>devtools::build_readme()</code></p></li>
+<li><p>Run:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">use_github_action_check_standard</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">save_as =</span> <span class="st">"R-CMD-check.yaml"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ref =</span> <span class="cn">NULL</span>, <span class="at">ignore =</span> <span class="cn">TRUE</span>, <span class="at">open =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+</ul>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+<img src="img/r-cmd-check.png" class="img-fluid" width="258">
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</section>
+</section>
+<section id="package-down" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="package-down"><span class="header-section-number">4</span> Package down</h2>
+<p><strong>Share your package with the world 🌎.</strong></p>
+<ul>
+<li>Create an empty branch for hosting your page.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run this in terminal</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># To open Terminal in R studio, click Tools &gt; Terminal &gt; New Terminal</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">--orphan</span> gh-pages     </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">-rf</span> .     </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">--allow-empty</span> <span class="at">-m</span> <span class="st">'Initial gh-pages commit'</span>    </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin gh-pages     </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><p>Install&nbsp;<code>pkgdown</code></p></li>
+<li><p>Run&nbsp;<code>usethis::use_pkgdown()</code></p></li>
+<li><p>Run <code>usethis::use_pkgdown_github_pages()</code></p></li>
+</ul>
+</section>
+<section id="additional-materials" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="additional-materials"><span class="header-section-number">5</span> Additional materials</h2>
+<section id="cheatsheet" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="cheatsheet"><span class="header-section-number">5.1</span> Cheatsheet</h3>
+<div class="center-text">
+<p><a href="https://www.google.com/url?sa=t&amp;source=web&amp;rct=j&amp;opi=89978449&amp;url=https://raw.githubusercontent.com/rstudio/cheatsheets/main/package-development.pdf&amp;ved=2ahUKEwjQwtichsSFAxXpia8BHeHNBVQQFnoECA4QAQ&amp;usg=AOvVaw3UgPwTq5Q0kZ1KhurRj__k" class="btn btn-outline-secondary" role="button"> Download cheatsheet</a></p>
+</div>
+</section>
+<section id="resources" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="resources"><span class="header-section-number">5.2</span> Resources</h3>
+<p>A sample R package: <a href="https://thinhong.github.io/denim/" class="uri">https://thinhong.github.io/denim/</a>﻿</p>
+<p>Popular R packages: <a href="https://tidyverse.tidyverse.org/" class="uri">https://tidyverse.tidyverse.org/</a></p>
+<p>Thorough guide to R package development: <a href="https://r-pkgs.org" class="uri">https://r-pkgs.org</a></p>
+<p>“Advanced R” book: <a href="https://adv-r.hadley.nz/" class="uri">https://adv-r.hadley.nz/</a>﻿”</p>
+<p>“R for data science” book : <a href="https://r4ds.had.co.nz/" class="uri">https://r4ds.had.co.nz/</a></p>
+<p>﻿Explore syntax for function documentation: <a href="https://roxygen2.r-lib.org/articles/roxygen2.html" class="uri">https://roxygen2.r-lib.org/articles/roxygen2.html</a>﻿</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<script>videojs(video_shortcode_videojs_video1);</script>
+<script>videojs(video_shortcode_videojs_video2);</script>
+
+
+
+</body></html>

@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "create_r_package.html",
+    "href": "create_r_package.html",
+    "title": "Build your first R package",
+    "section": "",
+    "text": "You will learn to\n\n\n\n\nCreate a new R package\nWriting the first function\nSetup quality control"
+  },
+  {
+    "objectID": "create_r_package.html#create-new-r-package",
+    "href": "create_r_package.html#create-new-r-package",
+    "title": "Build your first R package",
+    "section": "1 Create new R package",
+    "text": "1 Create new R package\n\n1.1 Steps\n\nGo to Files > New Project…\nSelect New Directory > R Package\nFill in Package name\n(optional) Tick Create a git repository\nClick Create Project\n\n\n\n\n\n\n\nA typical R package structure\n\n\n\n\n\n\nDemo: create new package\n\n\n\n1.2 Post creation\n\nInstall usethis\nGenerate a license for your package:\n\nOpen-source: use_mit_license(copyright_holder=NULL)\nProprietary: use_proprietary_license(copyright_holder)\nOther license options…\n\nGenerate a read me file: usethis::use_readme_rmd()\n(optional) Update information inside the DESCRIPTION file."
+  },
+  {
+    "objectID": "create_r_package.html#writing-the-first-function",
+    "href": "create_r_package.html#writing-the-first-function",
+    "title": "Build your first R package",
+    "section": "2 Writing the first function",
+    "text": "2 Writing the first function\n\n2.1 Write it\n\nCreate a file to place your function into\nDefine a function\n\nExample\n\nsquare <- function(x) {\n  return(x * x)\n}\n\n\n\n2.2 Document it\n\nInstall roxygen2\nGenerate and update the roxygen documentation on top of the function.\nRun roxygen2::roxygenise() to generate documents.\n\n\n#' Square a number \n#' \n#' Takes a number x and returns its square, x * x. \n#' \n#' @param x A numeric value to be squared. \n#' @return The square of x. \n#' @examples \n#' square(2) \n#' square(-5.7) \n#' \n#' @export \nsquare <- function(x) { \n  return(x * x) \n}\n\nDemo: how to generate roxygen skeleton\n\n\n\n2.3 Caveat (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧\nReuse built-in function names instead of creating new ones\nSome reusable function names: plot, print, toString\nTo reuse function name:\n\nModify original function to add class to it\nWrite a custom function for your class\n\nExample: overriding plot function for class square\n\nsquare <- function(x) {\n  out <- x * x \n  class(out) <- \"my_class\" # tell R that ouptut is of class \"my_class\"\n  return(out)\n}\n\n# --- Override plot function\nplot.my_class <- function(x, ...) {\n  plot(c(1:length(x)), x, xlab = \"x\", ylab = \"Square of x\", ...)\n}\n\n# --- Test the new plot function \ny <- square(c(1,2,3,4,5,6,7,8,9,10))\nplot(y)"
+  },
+  {
+    "objectID": "create_r_package.html#set-up-quality-control",
+    "href": "create_r_package.html#set-up-quality-control",
+    "title": "Build your first R package",
+    "section": "3 Set up quality control",
+    "text": "3 Set up quality control\n\n3.1 Unit testing\nMakes sure your functions work as expected.\n\nInstall devtools, usethis\nImport usethis: library(usethis)\nCreate a test: usethis::use_test(\"test_name\")\n\nExample: unit test for square function\n\n\nlibrary(testthat)\ntest_that(\"square(3) returns 9\", {\n  # --- Define expected output\n  expected <- 9\n  class(expected) <- \"my_class\" \n  # --- Test function\n  actual <-  square(3)\n  expect_equal(actual, expected)\n})\n\nTest passed 🎉\n\n\n\n\n\n\n\n\nTip\n\n\n\nRun devtools::test() to run all tests in package\n\n\n\n\n3.2 Code coverage\nKnowing how much is your package tested.\n\nInstall covr\nImport devtools and covr\nPush your package to GitHub\nRun use_coverage(type = c(\"codecov\"))\nRun use_github_action(\"test-coverage\")\nLogin http://codecov.io and get your repo’s token\nRun codecov(token = \"YOUR_TOKEN_HERE\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3.3 Automatic R CMD check\nEnsure your changes doesn’t cause the package to failed to build.\n\nRe-knit readme: devtools::build_readme()\nRun:\n\nuse_github_action_check_standard(\n  save_as = \"R-CMD-check.yaml\",\n  ref = NULL, ignore = TRUE, open = FALSE)"
+  },
+  {
+    "objectID": "create_r_package.html#package-down",
+    "href": "create_r_package.html#package-down",
+    "title": "Build your first R package",
+    "section": "4 Package down",
+    "text": "4 Package down\nShare your package with the world 🌎.\n\nCreate an empty branch for hosting your page.\n\n\n# Run this in terminal\n# To open Terminal in R studio, click Tools > Terminal > New Terminal\ngit checkout --orphan gh-pages     \ngit rm -rf .     \ngit commit --allow-empty -m 'Initial gh-pages commit'    \ngit push origin gh-pages     \ngit checkout master\n\n\nInstall pkgdown\nRun usethis::use_pkgdown()\nRun usethis::use_pkgdown_github_pages()"
+  },
+  {
+    "objectID": "create_r_package.html#additional-materials",
+    "href": "create_r_package.html#additional-materials",
+    "title": "Build your first R package",
+    "section": "5 Additional materials",
+    "text": "5 Additional materials\n\n5.1 Cheatsheet\n\n Download cheatsheet\n\n\n\n5.2 Resources\nA sample R package: https://thinhong.github.io/denim/﻿\nPopular R packages: https://tidyverse.tidyverse.org/\nThorough guide to R package development: https://r-pkgs.org\n“Advanced R” book: https://adv-r.hadley.nz/﻿”\n“R for data science” book : https://r4ds.had.co.nz/\n﻿Explore syntax for function documentation: https://roxygen2.r-lib.org/articles/roxygen2.html"
+  }
+]
