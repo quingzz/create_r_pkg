@@ -1,6 +1,7 @@
 project:
   title: "create_r_package"
   type: website
+  output-dir: docs
 
 editor: visual
 
