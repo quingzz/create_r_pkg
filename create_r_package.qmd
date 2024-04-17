@@ -94,7 +94,7 @@ square <- function(x) {
 
 ***Demo***: how to generate roxygen skeleton
 
-{{< video img/create_pkg.mp4 >}}
+{{< video img/create_roxygen.mp4 >}}
 
 ### Caveat (ﾉ◕ヮ◕)ﾉ\*:･ﾟ✧
 
@@ -113,12 +113,12 @@ Example: overriding `plot` function for class `square`
 ```{r}
 square <- function(x) {
   out <- x * x 
-  class(out) <- "my_class" # tell R that ouptut is of class "my_class"
+  class(out) <- "square" # tell R that ouptut is of class "square"
   return(out)
 }
 
 # --- Override plot function
-plot.my_class <- function(x, ...) {
+plot.square <- function(x, ...) {
   plot(c(1:length(x)), x, xlab = "x", ylab = "Square of x", ...)
 }
 
@@ -146,7 +146,7 @@ library(testthat)
 test_that("square(3) returns 9", {
   # --- Define expected output
   expected <- 9
-  class(expected) <- "my_class" 
+  class(expected) <- "square" 
   # --- Test function
   actual <-  square(3)
   expect_equal(actual, expected)
@@ -154,7 +154,7 @@ test_that("square(3) returns 9", {
 ```
 
 ::: callout-tip
-Run `devtools::test()` to run all tests in package
+Run `devtools::test()` in R to run all tests in package
 :::
 
 ### Code coverage
@@ -204,9 +204,11 @@ Run `devtools::test()` to run all tests in package
 
 -   Create an empty branch for hosting your page.
 
+Run the following snippet in Terminal
+
+To open Terminal in R studio, click `Tools` \> `Terminal` \> `New Terminal`
+
 ```{bash, eval=F}
-# Run this in terminal
-# To open Terminal in R studio, click Tools > Terminal > New Terminal
 git checkout --orphan gh-pages     
 git rm -rf .     
 git commit --allow-empty -m 'Initial gh-pages commit'    
