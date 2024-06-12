@@ -1,9 +1,17 @@
 project:
   title: "create_r_package"
-  type: website
+  type: book
   output-dir: docs
 
 editor: visual
+
+book:
+  title: "Create R Package"
+  author: "Anh Phan"
+  date: "6/12/2024"
+  chapters:
+    - index.qmd
+    - create_r_package.qmd
 
 format:
   html:

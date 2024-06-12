@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>create_r_package - Build your first R package</title>
+<title>Create R Pacakge - 2&nbsp; Build your first R package</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -87,11 +87,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -127,41 +129,83 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Build your first R package</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Create R Pacakge</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">You will learn to</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./create_r_package.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Build your first R package</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#create-new-r-package" id="toc-create-new-r-package" class="nav-link active" data-scroll-target="#create-new-r-package"><span class="toc-section-number">1</span>  Create new R package</a>
+  <li><a href="#create-new-r-package" id="toc-create-new-r-package" class="nav-link active" data-scroll-target="#create-new-r-package"><span class="toc-section-number">2.1</span>  Create new R package</a>
   <ul class="collapse">
-  <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps"><span class="toc-section-number">1.1</span>  Steps</a></li>
-  <li><a href="#post-creation" id="toc-post-creation" class="nav-link" data-scroll-target="#post-creation"><span class="toc-section-number">1.2</span>  Post creation</a></li>
+  <li><a href="#steps" id="toc-steps" class="nav-link" data-scroll-target="#steps"><span class="toc-section-number">2.1.1</span>  Steps</a></li>
+  <li><a href="#post-creation" id="toc-post-creation" class="nav-link" data-scroll-target="#post-creation"><span class="toc-section-number">2.1.2</span>  Post creation</a></li>
   </ul></li>
-  <li><a href="#writing-the-first-function" id="toc-writing-the-first-function" class="nav-link" data-scroll-target="#writing-the-first-function"><span class="toc-section-number">2</span>  Writing the first function</a>
+  <li><a href="#writing-the-first-function" id="toc-writing-the-first-function" class="nav-link" data-scroll-target="#writing-the-first-function"><span class="toc-section-number">2.2</span>  Writing the first function</a>
   <ul class="collapse">
-  <li><a href="#write-it" id="toc-write-it" class="nav-link" data-scroll-target="#write-it"><span class="toc-section-number">2.1</span>  Write it</a></li>
-  <li><a href="#document-it" id="toc-document-it" class="nav-link" data-scroll-target="#document-it"><span class="toc-section-number">2.2</span>  Document it</a></li>
-  <li><a href="#caveat-ﾉヮﾉﾟ" id="toc-caveat-ﾉヮﾉﾟ" class="nav-link" data-scroll-target="#caveat-ﾉヮﾉﾟ"><span class="toc-section-number">2.3</span>  Caveat (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</a></li>
+  <li><a href="#write-it" id="toc-write-it" class="nav-link" data-scroll-target="#write-it"><span class="toc-section-number">2.2.1</span>  Write it</a></li>
+  <li><a href="#document-it" id="toc-document-it" class="nav-link" data-scroll-target="#document-it"><span class="toc-section-number">2.2.2</span>  Document it</a></li>
+  <li><a href="#caveat-ﾉヮﾉﾟ" id="toc-caveat-ﾉヮﾉﾟ" class="nav-link" data-scroll-target="#caveat-ﾉヮﾉﾟ"><span class="toc-section-number">2.2.3</span>  Caveat (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</a></li>
   </ul></li>
-  <li><a href="#set-up-quality-control" id="toc-set-up-quality-control" class="nav-link" data-scroll-target="#set-up-quality-control"><span class="toc-section-number">3</span>  Set up quality control</a>
+  <li><a href="#set-up-quality-control" id="toc-set-up-quality-control" class="nav-link" data-scroll-target="#set-up-quality-control"><span class="toc-section-number">2.3</span>  Set up quality control</a>
   <ul class="collapse">
-  <li><a href="#unit-testing" id="toc-unit-testing" class="nav-link" data-scroll-target="#unit-testing"><span class="toc-section-number">3.1</span>  Unit testing</a></li>
-  <li><a href="#code-coverage" id="toc-code-coverage" class="nav-link" data-scroll-target="#code-coverage"><span class="toc-section-number">3.2</span>  Code coverage</a></li>
-  <li><a href="#automatic-r-cmd-check" id="toc-automatic-r-cmd-check" class="nav-link" data-scroll-target="#automatic-r-cmd-check"><span class="toc-section-number">3.3</span>  Automatic R CMD check</a></li>
+  <li><a href="#unit-testing" id="toc-unit-testing" class="nav-link" data-scroll-target="#unit-testing"><span class="toc-section-number">2.3.1</span>  Unit testing</a></li>
+  <li><a href="#code-coverage" id="toc-code-coverage" class="nav-link" data-scroll-target="#code-coverage"><span class="toc-section-number">2.3.2</span>  Code coverage</a></li>
+  <li><a href="#automatic-r-cmd-check" id="toc-automatic-r-cmd-check" class="nav-link" data-scroll-target="#automatic-r-cmd-check"><span class="toc-section-number">2.3.3</span>  Automatic R CMD check</a></li>
   </ul></li>
-  <li><a href="#package-down" id="toc-package-down" class="nav-link" data-scroll-target="#package-down"><span class="toc-section-number">4</span>  Package down</a></li>
-  <li><a href="#additional-materials" id="toc-additional-materials" class="nav-link" data-scroll-target="#additional-materials"><span class="toc-section-number">5</span>  Additional materials</a>
+  <li><a href="#package-down" id="toc-package-down" class="nav-link" data-scroll-target="#package-down"><span class="toc-section-number">2.4</span>  Package down</a></li>
+  <li><a href="#additional-materials" id="toc-additional-materials" class="nav-link" data-scroll-target="#additional-materials"><span class="toc-section-number">2.5</span>  Additional materials</a>
   <ul class="collapse">
-  <li><a href="#cheatsheet" id="toc-cheatsheet" class="nav-link" data-scroll-target="#cheatsheet"><span class="toc-section-number">5.1</span>  Cheatsheet</a></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources"><span class="toc-section-number">5.2</span>  Resources</a></li>
+  <li><a href="#cheatsheet" id="toc-cheatsheet" class="nav-link" data-scroll-target="#cheatsheet"><span class="toc-section-number">2.5.1</span>  Cheatsheet</a></li>
   </ul></li>
+  <li><a href="#releasing-to-cran" id="toc-releasing-to-cran" class="nav-link" data-scroll-target="#releasing-to-cran"><span class="toc-section-number">2.6</span>  Releasing to CRAN</a>
+  <ul class="collapse">
+  <li><a href="#release-workflow" id="toc-release-workflow" class="nav-link" data-scroll-target="#release-workflow"><span class="toc-section-number">2.6.1</span>  Release workflow</a></li>
+  <li><a href="#caveats" id="toc-caveats" class="nav-link" data-scroll-target="#caveats"><span class="toc-section-number">2.6.2</span>  Caveats</a></li>
+  </ul></li>
+  <li><a href="#example-package" id="toc-example-package" class="nav-link" data-scroll-target="#example-package"><span class="toc-section-number">2.7</span>  Example package</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources"><span class="toc-section-number">2.8</span>  Resources</a></li>
   </ul>
 </nav>
     </div>
@@ -170,7 +214,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Build your first R package</h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Build your first R package</span></h1>
 </div>
 
 
@@ -185,32 +229,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<div class="callout-tip callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-You will learn to
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li><p>Create a new R package</p></li>
-<li><p>Writing the first function</p></li>
-<li><p>Setup quality control</p></li>
-</ul>
-</div>
-</div>
-<section id="create-new-r-package" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="create-new-r-package"><span class="header-section-number">1</span> Create new R package</h2>
-<section id="steps" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="steps"><span class="header-section-number">1.1</span> Steps</h3>
+<section id="create-new-r-package" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="create-new-r-package"><span class="header-section-number">2.1</span> Create new R package</h2>
+<section id="steps" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="steps"><span class="header-section-number">2.1.1</span> Steps</h3>
 <ul>
 <li><p>Go to <strong><code>Files</code> &gt; <code>New Project…</code></strong></p></li>
 <li><p>Select <strong><code>New Directory</code> &gt; <code>R Package</code></strong></p></li>
 <li><p>Fill in <strong><code>Package name</code></strong></p></li>
-<li><p>(optional) Tick <strong><code>Create a git repository</code></strong></p></li>
+<li><p>Tick <strong><code>Create a git repository</code></strong></p></li>
 <li><p>Click <strong><code>Create Project</code></strong></p></li>
 </ul>
 <div class="callout-tip callout callout-style-default callout-captioned">
@@ -229,64 +256,104 @@ A typical R package structure
 <p><strong><em>Demo</em></strong>: create new package</p>
 <div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="img/create_pkg.mp4"></video></div>
 </section>
-<section id="post-creation" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="post-creation"><span class="header-section-number">1.2</span> Post creation</h3>
+<section id="post-creation" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="post-creation"><span class="header-section-number">2.1.2</span> Post creation</h3>
 <ul>
-<li><p>Install <code>usethis</code></p></li>
+<li><p>Install <code>usethis</code> and <code>devtools</code></p></li>
 <li><p>Generate a license for your package:</p>
 <ul>
-<li><p>Open-source: <code>use_mit_license(copyright_holder=NULL)</code></p></li>
-<li><p>Proprietary: <code>use_proprietary_license(copyright_holder)</code></p></li>
+<li><p>Open-source: run <code>usethis::use_mit_license(copyright_holder=NULL)</code> in RStudio <code>Console</code></p></li>
+<li><p>Proprietary: <code>usethis::use_proprietary_license(copyright_holder)</code> in RStudio <code>Console</code></p></li>
 <li><p>Other <a href="https://usethis.r-lib.org/reference/licenses.html#ref-usage">license options</a>…</p></li>
 </ul></li>
-<li><p>Generate a read me file: <code>usethis::use_readme_rmd()</code></p></li>
-<li><p>(optional) Update information inside the <code>DESCRIPTION</code> file.</p></li>
+<li><p>Generate a read me file: run <code>usethis::use_readme_rmd()</code> in RStudio <code>Console</code></p></li>
+<li><p>(optional) Update information inside the <code>DESCRIPTION</code> file. Some fields of interest:</p>
+<ul>
+<li><p><code>Title</code>: what the package does</p></li>
+<li><p><code>Description</code>: more detailed information about the package (in one paragraph)</p></li>
+<li><p><code>Depends</code>: list of package’s dependencies for core functions (your package <strong>require</strong> these external packages to work)</p></li>
+<li><p><code>Suggest</code>: list of package’s dependencies for development tasks or optional functions (for example: packages used for testing)</p></li>
+<li><p><code>Authors</code>: list of package’s authors. Read <a href="https://r-pkgs.org/description.html#sec-description-authors-at-r"><code>Author</code></a> section for the format.</p></li>
+</ul></li>
+<li><p>(optional) Upload to Github</p>
+<ul>
+<li><p>Create a new repository on Github</p></li>
+<li><p>Open <code>Terminal</code> (To open Terminal in R studio, click <code>Tools</code> &gt; <code>Terminal</code> &gt; <code>New Terminal</code> )</p></li>
+<li><p>Run the following snippet in RStudio <code>Terminal</code> (replace {link to repo} with your repo link)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add .</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Initial commit"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin {link to repo}                        </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch <span class="at">-M</span> main</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p>Demo upload github </p><div class="quarto-video"><video id="video_shortcode_videojs_video3" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="img/upload_to_github.mp4"></video></div><p></p></li>
+</ul></li>
 </ul>
 </section>
 </section>
-<section id="writing-the-first-function" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="writing-the-first-function"><span class="header-section-number">2</span> Writing the first function</h2>
-<section id="write-it" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="write-it"><span class="header-section-number">2.1</span> Write it</h3>
+<section id="writing-the-first-function" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="writing-the-first-function"><span class="header-section-number">2.2</span> Writing the first function</h2>
+<section id="write-it" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="write-it"><span class="header-section-number">2.2.1</span> Write it</h3>
 <ul>
-<li>Create a file to place your function into</li>
+<li>Create a file to place your function into. The file must be created in R folder with the naming convention: <code>function_name.R</code>. To create the file, there are 2 options:
+<ul>
+<li>Use RStudio to navigate to <code>R</code> folder and click <code>New Blank File</code> &gt; <code>R Script</code></li>
+<li>Run <code>usethis::use_r("filename")</code> in <code>Console</code></li>
+</ul></li>
 <li>Define a function</li>
 </ul>
-<p>Example</p>
+<p>Example: Create a <code>square.R</code> that contains the following snippet</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>square <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x <span class="sc">*</span> x)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>square <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x <span class="sc">*</span> x)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="document-it" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="document-it"><span class="header-section-number">2.2</span> Document it</h3>
+<section id="document-it" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="document-it"><span class="header-section-number">2.2.2</span> Document it</h3>
 <ul>
 <li><p>Install <code>roxygen2</code></p></li>
-<li><p>Generate and update the roxygen documentation on top of the function.</p></li>
-<li><p>Run <code>roxygen2::roxygenise()</code> to generate documents.</p></li>
+<li><p>Generate and update the roxygen documentation on top of the function. (Refer to demo video)</p></li>
+<li><p>Run <code>roxygen2::roxygenise()</code> or <code>devtools::document()</code> to generate documents.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Square a number </span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' Takes a number x and returns its square, x * x. </span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param x A numeric value to be squared. </span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' @return The square of x. </span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples </span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' square(2) </span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' square(-5.7) </span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export </span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>square <span class="ot">&lt;-</span> <span class="cf">function</span>(x) { </span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x <span class="sc">*</span> x) </span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' Square a number </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#' Takes a number x and returns its square, x * x. </span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#' @param x A numeric value to be squared. </span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#' @return The square of x. </span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#' @examples </span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#' square(2) </span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#' square(-5.7) </span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#' </span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#' @export </span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>square <span class="ot">&lt;-</span> <span class="cf">function</span>(x) { </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x <span class="sc">*</span> x) </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong><em>Demo</em></strong>: how to generate roxygen skeleton</p>
 <div class="quarto-video"><video id="video_shortcode_videojs_video2" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="img/create_roxygen.mp4"></video></div>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Trouble shooting NAMESPACE
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If <code>roxygen2::roxygenise()</code> prints out the following message</p>
+<p><code>✖ Skipping NAMESPACE It already exists and was not generated by roxygen2.</code></p>
+<p>delete the current NAMESPACE file and rerun the command</p>
+</div>
+</div>
 </section>
-<section id="caveat-ﾉヮﾉﾟ" class="level3" data-number="2.3">
-<h3 data-number="2.3" class="anchored" data-anchor-id="caveat-ﾉヮﾉﾟ"><span class="header-section-number">2.3</span> Caveat (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</h3>
+<section id="caveat-ﾉヮﾉﾟ" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="caveat-ﾉヮﾉﾟ"><span class="header-section-number">2.2.3</span> Caveat (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧</h3>
 <p>Reuse built-in function names instead of creating new ones</p>
 <p>Some reusable function names: <code>plot</code>, <code>print</code>, <code>toString</code></p>
 <p>To reuse function name:</p>
@@ -296,50 +363,48 @@ A typical R package structure
 </ul>
 <p>Example: overriding <code>plot</code> function for class <code>square</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>square <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> x <span class="sc">*</span> x </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">class</span>(out) <span class="ot">&lt;-</span> <span class="st">"square"</span> <span class="co"># tell R that ouptut is of class "square"</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Override plot function</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>plot.square <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...) {</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x)), x, <span class="at">xlab =</span> <span class="st">"x"</span>, <span class="at">ylab =</span> <span class="st">"Square of x"</span>, ...)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Test the new plot function </span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">square</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>))</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>square <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  out <span class="ot">&lt;-</span> x <span class="sc">*</span> x </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">class</span>(out) <span class="ot">&lt;-</span> <span class="st">"square"</span> <span class="co"># tell R that ouptut is of class "square"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(out)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Override plot function</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>plot.square <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...) {</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x)), x, <span class="at">xlab =</span> <span class="st">"x"</span>, <span class="at">ylab =</span> <span class="st">"Square of x"</span>, ...)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Test the new plot function </span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">square</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">9</span>,<span class="dv">10</span>))</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="create_r_package_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<p><img src="create_r_package_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
 </section>
-<section id="set-up-quality-control" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="set-up-quality-control"><span class="header-section-number">3</span> Set up quality control</h2>
-<section id="unit-testing" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="unit-testing"><span class="header-section-number">3.1</span> Unit testing</h3>
+<section id="set-up-quality-control" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="set-up-quality-control"><span class="header-section-number">2.3</span> Set up quality control</h2>
+<section id="unit-testing" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="unit-testing"><span class="header-section-number">2.3.1</span> Unit testing</h3>
 <p><strong>Makes sure your functions work as expected.</strong></p>
 <ul>
 <li><p>Install <code>devtools</code>, <code>usethis</code></p></li>
-<li><p>Import usethis: <code>library(usethis)</code></p></li>
-<li><p>Create a test: <code>usethis::use_test("test_name")</code></p></li>
+<li><p>Create a test: run <code>usethis::use_test("test_name")</code> in RStudio <code>Console</code>. This would create a file named <code>"test-test_name.R"</code> under <code>tests/testthat</code> folder</p></li>
 </ul>
-<p>Example: unit test for <code>square</code> function<br>
-</p>
+<p>Example: unit test for <code>square</code> function</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(testthat)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"square(3) returns 9"</span>, {</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Define expected output</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  expected <span class="ot">&lt;-</span> <span class="dv">9</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">class</span>(expected) <span class="ot">&lt;-</span> <span class="st">"square"</span> </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Test function</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  actual <span class="ot">&lt;-</span>  <span class="fu">square</span>(<span class="dv">3</span>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(actual, expected)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(testthat)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">"square(3) returns 9"</span>, {</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Define expected output</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  expected <span class="ot">&lt;-</span> <span class="dv">9</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">class</span>(expected) <span class="ot">&lt;-</span> <span class="st">"square"</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Test function</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  actual <span class="ot">&lt;-</span>  <span class="fu">square</span>(<span class="dv">3</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(actual, expected)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Test passed 🥇</code></pre>
+<pre><code>Test passed 🥳</code></pre>
 </div>
 </div>
 <div class="callout-tip callout callout-style-default callout-captioned">
@@ -356,11 +421,15 @@ Tip
 </div>
 </div>
 </section>
-<section id="code-coverage" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="code-coverage"><span class="header-section-number">3.2</span> Code coverage</h3>
-<p><strong>Knowing how much is your package tested.</strong></p>
+<section id="code-coverage" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="code-coverage"><span class="header-section-number">2.3.2</span> Code coverage</h3>
+<p><strong>View coverage report locally</strong></p>
 <ul>
 <li><p>Install <code>covr</code></p></li>
+<li><p>Run <code>covr::report()</code></p></li>
+</ul>
+<p><strong>Show your test coverage on Github</strong></p>
+<ul>
 <li><p>Import&nbsp;<code>devtools</code> and <code>covr</code></p></li>
 <li><p>Push your package to GitHub</p></li>
 <li><p>Run&nbsp;<code>use_coverage(type = c("codecov"))</code></p></li>
@@ -382,16 +451,18 @@ Tip
 </div>
 </div>
 </section>
-<section id="automatic-r-cmd-check" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="automatic-r-cmd-check"><span class="header-section-number">3.3</span> Automatic R CMD check</h3>
+<section id="automatic-r-cmd-check" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="automatic-r-cmd-check"><span class="header-section-number">2.3.3</span> Automatic R CMD check</h3>
+<p><strong>Test your package locally</strong></p>
+<p>Run <code>devtools::check()</code> in R console to test the package</p>
 <p><strong>Ensure your changes doesn’t cause the package to failed to build.</strong></p>
 <ul>
 <li><p>Re-knit readme:&nbsp;<code>devtools::build_readme()</code></p></li>
 <li><p>Run:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">use_github_action_check_standard</span>(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">save_as =</span> <span class="st">"R-CMD-check.yaml"</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ref =</span> <span class="cn">NULL</span>, <span class="at">ignore =</span> <span class="cn">TRUE</span>, <span class="at">open =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_github_action_check_standard</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">save_as =</span> <span class="st">"R-CMD-check.yaml"</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ref =</span> <span class="cn">NULL</span>, <span class="at">ignore =</span> <span class="cn">TRUE</span>, <span class="at">open =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 </ul>
 <div class="callout-tip callout callout-style-default callout-captioned">
@@ -409,38 +480,142 @@ Tip
 </div>
 </section>
 </section>
-<section id="package-down" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="package-down"><span class="header-section-number">4</span> Package down</h2>
+<section id="package-down" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="package-down"><span class="header-section-number">2.4</span> Package down</h2>
 <p><strong>Share your package with the world 🌎.</strong></p>
-<ul>
-<li>Create an empty branch for hosting your page.</li>
-</ul>
-<p>Run the following snippet in Terminal</p>
-<p>To open Terminal in R studio, click <code>Tools</code> &gt; <code>Terminal</code> &gt; <code>New Terminal</code></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">--orphan</span> gh-pages     </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">-rf</span> .     </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">--allow-empty</span> <span class="at">-m</span> <span class="st">'Initial gh-pages commit'</span>    </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin gh-pages     </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <ul>
 <li><p>Install&nbsp;<code>pkgdown</code></p></li>
 <li><p>Run&nbsp;<code>usethis::use_pkgdown()</code></p></li>
 <li><p>Run <code>usethis::use_pkgdown_github_pages()</code></p></li>
+<li><p>Create an empty branch for hosting your page.</p>
+<ul>
+<li>Run the following snippet in Terminal</li>
+<li>To open Terminal in R studio, click <code>Tools</code> &gt; <code>Terminal</code> &gt; <code>New Terminal</code></li>
+</ul></li>
 </ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">--orphan</span> gh-pages     </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> rm <span class="at">-rf</span> .     </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">--allow-empty</span> <span class="at">-m</span> <span class="st">'Initial gh-pages commit'</span>    </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push origin gh-pages     </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout master</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="additional-materials" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="additional-materials"><span class="header-section-number">5</span> Additional materials</h2>
-<section id="cheatsheet" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="cheatsheet"><span class="header-section-number">5.1</span> Cheatsheet</h3>
+<section id="additional-materials" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="additional-materials"><span class="header-section-number">2.5</span> Additional materials</h2>
+<section id="cheatsheet" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="cheatsheet"><span class="header-section-number">2.5.1</span> Cheatsheet</h3>
 <div class="center-text">
 <p><a href="https://www.google.com/url?sa=t&amp;source=web&amp;rct=j&amp;opi=89978449&amp;url=https://raw.githubusercontent.com/rstudio/cheatsheets/main/package-development.pdf&amp;ved=2ahUKEwjQwtichsSFAxXpia8BHeHNBVQQFnoECA4QAQ&amp;usg=AOvVaw3UgPwTq5Q0kZ1KhurRj__k" class="btn btn-outline-secondary" role="button"> Download cheatsheet</a></p>
 </div>
 <p><img src="img/cheatsheet.png" class="img-fluid" width="701"></p>
 </section>
-<section id="resources" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="resources"><span class="header-section-number">5.2</span> Resources</h3>
+</section>
+<section id="releasing-to-cran" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="releasing-to-cran"><span class="header-section-number">2.6</span> Releasing to CRAN</h2>
+<section id="release-workflow" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="release-workflow"><span class="header-section-number">2.6.1</span> Release workflow</h3>
+<p>The most concrete expression of the release process is the checklist produced by <a href="https://usethis.r-lib.org/reference/use_release_issue.html"><code>usethis::use_release_issue()</code></a>, which opens a GitHub issue containing a list of todo’s.</p>
+<details>
+  <summary>
+    The generated checklist would include the following
+  </summary>
+<p>First release:</p>
+<ul class="task-list">
+<li><p><input type="checkbox" disabled="">&nbsp;<code>usethis::use_news_md()</code></p></li>
+<li><p><input type="checkbox" disabled="">&nbsp;<code>usethis::use_cran_comments()</code></p></li>
+<li><p><input type="checkbox" disabled="">&nbsp;Update (aspirational) install instructions in README</p></li>
+<li><p><input type="checkbox" disabled="">&nbsp;Proofread&nbsp;<code>Title:</code>&nbsp;and&nbsp;<code>Description:</code></p></li>
+<li><p><input type="checkbox" disabled="">&nbsp;Check that all exported functions have&nbsp;<code>@return</code>&nbsp;and&nbsp;<code>@examples</code></p></li>
+<li><p><input type="checkbox" disabled="">&nbsp;Check that&nbsp;<code>Authors@R:</code>&nbsp;includes a copyright holder (role ‘cph’)</p></li>
+<li><p><input type="checkbox" disabled="">&nbsp;Check&nbsp;<a href="https://r-pkgs.org/license.html#sec-code-you-bundle">licensing of included files</a></p></li>
+<li><p><input type="checkbox" disabled="">&nbsp;Review&nbsp;<a href="https://github.com/DavisVaughan/extrachecks" class="uri">https://github.com/DavisVaughan/extrachecks</a></p></li>
+</ul>
+<p>Prepare for release:</p>
+<ul class="task-list">
+<li><p><input type="checkbox" disabled="">&nbsp;<code>git pull</code></p></li>
+<li><p><input type="checkbox" disabled="">&nbsp;<code>urlchecker::url_check()</code></p></li>
+<li><p><input type="checkbox" disabled="">&nbsp;<code>devtools::build_readme()</code></p></li>
+<li><p><input type="checkbox" disabled="">&nbsp;<code>devtools::check(remote = TRUE, manual = TRUE)</code></p></li>
+<li><p><input type="checkbox" disabled="">&nbsp;<code>devtools::check_win_devel()</code></p></li>
+<li><p><input type="checkbox" disabled="">&nbsp;<code>git push</code></p></li>
+</ul>
+<p>Submit to CRAN:</p>
+<ul class="task-list">
+<li><p><input type="checkbox" disabled="">&nbsp;<code>usethis::use_version('patch')</code></p></li>
+<li><p><input type="checkbox" disabled="">&nbsp;<code>devtools::submit_cran()</code></p></li>
+<li><p><input type="checkbox" disabled="">&nbsp;Approve email</p></li>
+</ul>
+<p>Wait for CRAN...</p>
+<ul class="task-list">
+<li><p><input type="checkbox" disabled="">&nbsp;Accepted 🎉</p></li>
+<li><p><input type="checkbox" disabled="">&nbsp;<code>usethis::use_github_release()</code></p></li>
+<li><p><input type="checkbox" disabled="">&nbsp;<code>usethis::use_dev_version(push = TRUE)</code></p></li>
+<li><p><input type="checkbox" disabled="">&nbsp;<code>usethis::use_news_md()</code></p></li>
+</ul>
+</details>
+</section>
+<section id="caveats" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="caveats"><span class="header-section-number">2.6.2</span> Caveats</h3>
+<p><strong>About DESCRIPTION file</strong></p>
+<ul>
+<li><p><code>Author</code> list: if part of your code is derived, copied from other sources, the authors of such code must be included in Author field with ‘ctb’ (contributor) role</p></li>
+<li><p><code>Description</code> section:</p>
+<ul>
+<li><p>When functions are mentioned, make sure it follows the format <code>function_name()</code></p></li>
+<li><p>When packages or software names are mentioned, make sure to place them in single quotes (<code>'package_name'</code>)</p></li>
+<li><p>When refer to publication titles, make sure to place them in double quotes (<code>"publication title"</code>)</p></li>
+</ul></li>
+</ul>
+<p><strong>About LICENSE file</strong></p>
+<ul>
+<li><p><strong>Github</strong> vs <strong>CRAN</strong> <code>LICENSE</code> file: since <code>LICENSE</code> file for Github and CRAN follows different formats, a work around is to have a <code>LICENSE.md</code> file for Github and a <code>LICENSE</code> file for CRAN (make sure <code>LICENSE.md</code> is in included in <code>.Rbuildignore</code>). This is usually automatically handled when LICENSE is generated by <code>usethis::use_{license_name}_license()</code></p>
+<details>
+  <summary>
+    LICENSE format for Github
+  </summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># MIT License</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>Copyright (c) 2024 demoPkg authors</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>of this software and associated documentation files (the "Software"), to deal</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>in the Software without restriction, including without limitation the rights</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>copies of the Software, and to permit persons to whom the Software is</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>furnished to do so, subject to the following conditions:</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>The above copyright notice and this permission notice shall be included in all</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>copies or substantial portions of the Software.</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>SOFTWARE.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>&lt;/details&gt;</p>
+<details>
+  <summary>
+    LICENSE format for CRAN
+  </summary>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="an">YEAR:</span><span class="co"> 2024</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="an">COPYRIGHT HOLDER:</span><span class="co"> demoPkg authors</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>&lt;/details&gt;</p></details></details></li>
+</ul>
+</section>
+</section>
+<section id="example-package" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="example-package"><span class="header-section-number">2.7</span> Example package</h2>
+<p>The package used for this tutorial is available at <a href="https://github.com/quingzz/demoPkg">Github</a></p>
+</section>
+<section id="resources" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="resources"><span class="header-section-number">2.8</span> Resources</h2>
 <p>A sample R package: <a href="https://thinhong.github.io/denim/" class="uri">https://thinhong.github.io/denim/</a>﻿</p>
 <p>Popular R packages: <a href="https://tidyverse.tidyverse.org/" class="uri">https://tidyverse.tidyverse.org/</a></p>
 <p>Thorough guide to R package development: <a href="https://r-pkgs.org" class="uri">https://r-pkgs.org</a></p>
@@ -449,7 +624,6 @@ Tip
 <p>﻿Explore syntax for function documentation: <a href="https://roxygen2.r-lib.org/articles/roxygen2.html" class="uri">https://roxygen2.r-lib.org/articles/roxygen2.html</a>﻿</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -586,9 +760,19 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">You will learn to</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 <script>videojs(video_shortcode_videojs_video1);</script>
 <script>videojs(video_shortcode_videojs_video2);</script>
+<script>videojs(video_shortcode_videojs_video3);</script>
 
 
 

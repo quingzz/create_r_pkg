@@ -1,0 +1,13 @@
+::: callout-tip
+## You will learn to
+
+-   Create a new R package
+
+-   Writing the first function
+
+-   Setup quality control
+
+-   Create github page for package using pkgdown
+
+-   Workflow for publishing package to CRAN
+:::
